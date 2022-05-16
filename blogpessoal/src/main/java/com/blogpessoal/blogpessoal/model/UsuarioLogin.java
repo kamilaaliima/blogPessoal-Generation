@@ -18,7 +18,7 @@ public class UsuarioLogin {
 	private String token;
 	
 	
-	public UsuarioLogin(Long id, String nome, String usuario, String senha, String foto, String tipo, String token) {
+ UsuarioLogin(Long id, String nome, String usuario, String senha, String foto, String tipo, String token) {
 		super();
 		this.id = id;
 		this.nome = nome;

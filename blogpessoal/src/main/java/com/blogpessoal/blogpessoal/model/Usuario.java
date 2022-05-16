@@ -16,6 +16,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
@@ -27,16 +29,20 @@ public class Usuario {
 	@NotNull (message = "O atributo *nome* é obrigatório!")
 	private String nome;
 	
-	@NotNull (message = "O atributo *usuário* é obrigatório!")
-	@Email (message = "O atributo *usuário* deve ser um e-mail válido!")
+	@Schema(example = "email@email.com.br") 
+	@NotNull(message = "O atributo Usuário é Obrigatório!") 
+	@Email(message = "O atributo Usuário deve ser um email válido!")
 	private String usuario;
 	
 	@NotBlank (message = "O atributo *senha* é obrigatório!")
 	@Size (min = 8, message = "A *senha* deve conter pelo menos oito caracteres!")
 	private String senha;
 	
+	@Size(max = 5000, 
+	message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
 	
+	@NotNull (message = "O atributo *tipo* é obrigatório!")
 	private String tipo;
 	
 	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
@@ -64,7 +70,7 @@ public class Usuario {
 
 
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -80,13 +86,17 @@ public class Usuario {
 		this.nome = nome;
 	}
 
+	
+
 	public String getUsuario() {
 		return usuario;
 	}
 
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
 
 	public String getSenha() {
 		return senha;
@@ -104,6 +114,19 @@ public class Usuario {
 		this.foto = foto;
 	}
 
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+
 	public List<Postagens> getPostagens() {
 		return postagens;
 	}
@@ -114,15 +137,7 @@ public class Usuario {
 
 
 
-	public String getTipo() {
-		return tipo;
-	}
 
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 	
 	
 	
